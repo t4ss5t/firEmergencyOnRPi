@@ -13,11 +13,11 @@ do
 
 	echo "convert $FILE to $2$OUTPUTFILENAME ..."
 
-	convert -density $DPI -depth 8 $FILE -fill white -draw 'rectangle 10,10 20,20' -background white -flatten +matte $2$OUTPUTFILENAME
+	nice -n -15 convert -density $DPI -depth 8 $FILE -fill white -draw 'rectangle 10,10 20,20' -background white -flatten +matte $2$OUTPUTFILENAME
 
 	echo "convert done!"
 
-	tesseract $2$OUTPUTFILENAME $3$TIMESTAMP -l $LANGUAGE -psm 3
+	nice -n -15 tesseract $2$OUTPUTFILENAME $3$TIMESTAMP -l $LANGUAGE -psm 3
 
 	echo "ocr done!"
 
