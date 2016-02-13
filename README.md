@@ -112,11 +112,3 @@ $ rm /media/fritzbox/sample.pdf
 Watch the directory "/home/pi/firemergency/txt" for changes
 
 ### firEmergency
-
-## Notices
-
-### Transfer data to RPi
-
-```
-$ scp /home/user/file.zip pi@firemergency.fritz.box:/home/pi/firemergency 
-```
