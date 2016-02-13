@@ -24,7 +24,7 @@ $ cd firemergency/
 
 ```
 $ cd ~
-$ git checkout git@github.com:t4ss5t/firEmergencyOnRPi
+$ git clone https://github.com/t4ss5t/firEmergencyOnRPi.git
 ```
 
 ## Set Hostname
