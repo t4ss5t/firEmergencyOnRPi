@@ -97,6 +97,12 @@ Test:
 $ cp /home/pi/firemergency/sample.pdf /media/fritzbox/
 ```
 
+Or:
+
+```
+$ scp /home/user/file/sample.pdf pi@firemergency.fritz.box:/media/fritzbox/
+```
+
 Delete previous copied samples before with:
 
 ```
