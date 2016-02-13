@@ -27,11 +27,11 @@ case "$1" in
         ;;
     stop)
         # STOP
-        killall incomingfaxobserver.sh
+        killall $SCRIPT$SCRIPTNAME
         ;;
     restart)
         # RESTART
-        killall incomingfaxobserver.sh
+        killall $SCRIPT$SCRIPTNAME
         sh $SCRIPT$SCRIPTNAME $INPUT $OUTPUT $TXT
         ;;
 esac
