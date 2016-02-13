@@ -1,0 +1,38 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          firEmergency server
+# Required-Start:    
+# Required-Stop:     
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Runs the firEmergency server
+# Description:       
+### END INIT INFO
+
+export USER='pi'
+ 
+eval cd ~$USER
+
+SCRIPT="/home/pi/firemergency/firEmergency1.9.9.6-Linux/"
+SCRIPTNAME="start.sh"
+
+eval cd $SCRIPT
+
+# Actions
+case "$1" in
+    start)
+        # START
+        sh $SCRIPTNAME server
+        ;;
+    stop)
+        # STOP
+        killall $SCRIPTNAME
+        ;;
+    restart)
+        # RESTART
+        killall $SCRIPTNAME
+        sh $SCRIPTNAME server
+        ;;
+esac
+ 
+exit 0
