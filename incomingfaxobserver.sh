@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DPI=300
+DPI=300 # convert time on Raspberry Pi 2 (@1000 MHz clock, without x-server and VNC connection): DPI=300 ~ 33 seconds, DPI=200 ~ 22 seconds
 OUTPUTFILEENDING=".tif"
 LANGUAGE="deu"
 
