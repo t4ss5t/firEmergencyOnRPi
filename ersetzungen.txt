@@ -2,12 +2,9 @@
 Stiohwort;Stichwort
 HausNr;
 Haus-Nr:;
-Ort;
 StraBe;Straße
-B15;B16
 =;#
 :;
 ¦;/
-\t; 
-F eingeklemmt;P eingeklemmt
+\t;
 ];)
