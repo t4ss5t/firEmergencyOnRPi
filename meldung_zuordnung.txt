@@ -1,0 +1,6 @@
+&1&:einsatzart
+&2&:stichwort_lang
+&3&:einsatzinfo
+&4&:ort
+&5&:ortsteil
+&6&:strasse

@@ -1,0 +1,13 @@
+Einsatznummer;ORT;einsatznummer
+ORT;ORTSTEIL;ort
+ORTSTEIL;STRASSE;ortsteil
+STRASSE;OBJEKT-NR;strasse
+OBJEKT-NR;OBJEKT;objektnr
+OBJEKT;STATION;objekt
+Koordinate WGS;\n;koordinate
+EINSATZART;STICHWORT KURZ;einsatzart
+STICHWORT KURZ;STICHWORT LANG;stichwort_kurz
+STICHWORT LANG;SONDERSIGNAL;stichwort_lang
+SONDERSIGNAL;ANRUFER;sondersignal
+ANRUFER;EINSATZINFO;anrufer
+EINSATZINFO;\n;einsatzinfo
