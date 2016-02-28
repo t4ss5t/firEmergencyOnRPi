@@ -118,3 +118,16 @@ $ rm /media/fritzbox/sample.pdf
 Watch the directory "/home/pi/firemergency/txt" for changes
 
 ### firEmergency
+
+Start instances with (open new terminal for each instance):
+
+```
+$ sh start.sh client
+$ sh start.sh server
+$ sh start.sh server-gui
+```
+
+Notice: You have to change to the firEmergency directory before calling the start script:
+```
+$ cd /home/pi/firemergency/firEmergency1.9.9.6-Linux
+```
