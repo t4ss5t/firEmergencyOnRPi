@@ -60,10 +60,16 @@ Add:
 
 ```
 # fritz box fax
-//fritz.box/klankenweg.nas /media/fritzbox cifs credentials=/home/pi/.smbcredentials,uid=1000,gid=1000,user 0 0
+//192.168.XYZ.XYZ/NAME.nas /media/fritzbox cifs credentials=/home/pi/.smbcredentials,uid=1000,gid=1000,user 0 0
 ```
 
 You can copy the smbcredentials-template from the repository to the pi-home folder and fiill out the parameters.
+
+If the folder that is defined in fstab was not mounted after startup, you can automount with:
+
+```
+$ sudo mount -a
+```
 
 ## Set up init.d services
 
