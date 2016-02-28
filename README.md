@@ -117,7 +117,7 @@ $ rm /media/fritzbox/sample.pdf
 
 Watch the directory "/home/pi/firemergency/txt" for changes
 
-### firEmergency
+## firEmergency
 
 Start instances with (open new terminal for each instance):
 
