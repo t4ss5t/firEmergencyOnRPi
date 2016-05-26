@@ -5,10 +5,16 @@ Run firEmergency on a raspberry pi with fax input by a "Fritz Box" and fax proce
 ## Install packages
 
 ```
-$ sudo apt-get install imagemagick inotify-tools tightvncserver tesseract-ocr tesseract-ocr-deu tesseract-ocr-eng default-jre git htop
+$ sudo apt-get install imagemagick inotify-tools tightvncserver tesseract-ocr tesseract-ocr-deu tesseract-ocr-eng default-jre git htop python-pip
 ```
 
 Ensure that you have enough space on the device (you should expand the file system before installing the packages).
+
+## Install watchntouch
+
+$ sudo pip install watchntouch
+
+watchntouch -w DIR
 
 ## Get latest firEmergency edition for linux / set up workspace
 
@@ -71,17 +77,6 @@ If the folder that is defined in fstab was not mounted after startup, you can au
 $ sudo mount -a
 ```
 
-## Set up init.d services
-
-```
-$ sudo nano /etc/init.d/XXX
-$ sudo chmod +x /etc/init.d/XXX
-$ sudo update-rc.d XXX defaults
-$ sudo /etc/init.d/XXX start
-$ sudo /etc/init.d/XXX stop
-$ sudo /etc/init.d/XXX restart
-```
-
 ### Tightvnc
 
 VNC allows remote maintenance. On first start, you have to assign passwords.
@@ -92,10 +87,26 @@ You can use the VNC server with "TightVNC Viewer" (Windows) or "xtightvncviewer"
 $ xtightvncviewer firemergency.fritz.box:1
 ```
 
+Set up init.d services for vncserver (use file from repository):
+
+```
+$ sudo nano /etc/init.d/vncserver
+$ sudo chmod +x /etc/init.d/vncserver
+$ sudo update-rc.d vncserver defaults
+$ sudo /etc/init.d/vncserver start
+$ sudo /etc/init.d/vncserver stop
+$ sudo /etc/init.d/vncserver restart
+```
+
 ### Incoming fax observer
 
 This is the script that registers incoming fax messages and convert it to tif pictures with imagemagick.
-After that, the picture is read by the tesseract ocr engine to get the text from the fax (as input for firEmergency).
+
+Run:
+
+```
+$ sh incomingfaxobserver.sh /media/fritzbox /home/pi/firEmergency1.9.9.6-Linux/files/fax/input/
+```
 
 Test:
 
@@ -115,9 +126,47 @@ Delete previous copied samples before with:
 $ rm /media/fritzbox/sample.pdf
 ```
 
-Watch the directory "/home/pi/firemergency/txt" for changes
+Watch the directory "/home/pi/firEmergency1.9.9.6-Linux/files/fax/input/" for changes.
 
-## firEmergency
+## Setup
+
+You now have to setup firEmergency, take a look at the corresponding documentation for this issue.
+
+Here are some tips for the use with mentioned components:
+
+### Configure input plugin
+
+Add "Leistellen Fax": Select "Tesseract" as OCR and set path (/usr/bin/tesseract).
+
+### Message template / keywords
+
+You can use the content of the following files to configure your alarm messages:
+
+```
+meldung_template.txt
+meldung_zuordnung.txt
+schluesselwoerter.txt
+```
+
+### Replacements
+
+You can use the file "ersetzungen.txt" that is given in this repository, place your replacement in:
+
+```
+/home/pi/firemergency/firEmergency1.9.9.6-Linux/Config/ersetzungen.txt
+```
+
+## Usage
+
+### Mount
+
+Automount fritzbox directory (based on fstab configuration):
+
+```
+$ sudo mount -a
+```
+
+### firEmergency
 
 Start instances with (open new terminal for each instance):
 
@@ -131,3 +180,15 @@ Notice: You have to change to the firEmergency directory before calling the star
 ```
 $ cd /home/pi/firemergency/firEmergency1.9.9.6-Linux
 ```
+
+### Watchntouch
+
+Run the watchntouch script (in an own terminal) to be sure that the inotify events are called:
+
+```
+$ watchntouch -w /media/fritzbox
+```
+
+### Incoming fax observer
+
+Call the observer like it is mentioned above (in section: Run).
