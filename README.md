@@ -12,9 +12,9 @@ Ensure that you have enough space on the device (you should expand the file syst
 
 ## Install watchntouch
 
+```
 $ sudo pip install watchntouch
-
-watchntouch -w DIR
+```
 
 ## Get latest firEmergency edition for linux / set up workspace
 
@@ -186,8 +186,10 @@ $ cd /home/pi/firemergency/firEmergency1.9.9.6-Linux
 Run the watchntouch script (in an own terminal) to be sure that the inotify events are called:
 
 ```
-$ watchntouch -w /media/fritzbox
+$ watchntouch -w /media/fritzbox -l 10
 ```
+
+Loglevel is set to 10, so you can see when watchntouch recognized a file.
 
 ### Incoming fax observer
 
