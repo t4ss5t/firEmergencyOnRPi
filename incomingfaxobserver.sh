@@ -9,7 +9,7 @@ do
 	TIMESTAMP=$( date +%s )
 	OUTPUTFILENAME=$TIMESTAMP$OUTPUTFILEENDING
 
-    echo "New input-file named $FILE created at $TIMESTAMP"
+        echo "New input-file named $FILE created at $TIMESTAMP"
 
 	echo "convert $FILE to $2$OUTPUTFILENAME ..."
 
@@ -17,7 +17,7 @@ do
 
 	echo "convert done!"
 
-	rm $2$OUTPUTFILENAME
+	#rm $2$OUTPUTFILENAME
 
-	echo "file deleted"
+	#echo "file deleted"
 done
