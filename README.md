@@ -1,6 +1,6 @@
 # firEmergencyOnRPi
 
-Run firEmergency on a raspberry pi with fax input by a "Fritz Box" and fax processing with OCR engine tesseract.
+Run firEmergency on a Raspberry Pi with fax input by a "Fritz Box" and fax processing with OCR engine tesseract.
 
 ## Install packages
 
@@ -22,8 +22,9 @@ Unzip file to destination folder (for example /home/pi/firemergency)
 
 ```
 $ mkdir /home/pi/firemergency
-$ mv /home/Downloads/firEmergency1.9.9.6-Linux.zip firemergency/
+$ mv /home/Downloads/firEmergencyA.B.C.D-Linux.zip firemergency/
 $ cd firemergency/
+$ unzip firEmergencyA.B.C.D-Linux.zip
 ```
 
 ## Checkout git repo
@@ -81,7 +82,7 @@ $ sudo mount -a
 
 VNC allows remote maintenance. On first start, you have to assign passwords.
 
-You can use the VNC server with "TightVNC Viewer" (Windows) or "xtightvncviewer" on Linux, example:
+You can use the VNC server with "TightVNC Viewer" (Windows) or "xtightvncviewer" on Linux, example (Port: 1):
 
 ```
 $ xtightvncviewer firemergency.fritz.box:1
@@ -100,18 +101,18 @@ $ sudo /etc/init.d/vncserver restart
 
 ### Incoming fax observer
 
-This is the script that registers incoming fax messages and convert it to tif pictures with imagemagick.
+This is the script that registers incoming fax messages (PDF) and convert it to TIF pictures with imagemagick.
 
 Run:
 
 ```
-$ sh incomingfaxobserver.sh /media/fritzbox /home/pi/firEmergency1.9.9.6-Linux/files/fax/input/
+$ sh incomingfaxobserver.sh /media/fritzbox /home/pi/firEmergencyA.B.C.D-Linux/files/fax/input/
 ```
 
-Test:
+Test (be sure that you have a "sample.pdf" in the current directory):
 
 ```
-$ cp /home/pi/firemergency/sample.pdf /media/fritzbox/
+$ cp sample.pdf /media/fritzbox/
 ```
 
 Or:
@@ -126,7 +127,7 @@ Delete previous copied samples before with:
 $ rm /media/fritzbox/sample.pdf
 ```
 
-Watch the directory "/home/pi/firEmergency1.9.9.6-Linux/files/fax/input/" for changes.
+Watch the directory "/home/pi/firEmergencyA.B.C.D-Linux/files/fax/input/" for changes.
 
 ## Setup
 
@@ -153,7 +154,7 @@ schluesselwoerter.txt
 You can use the file "ersetzungen.txt" that is given in this repository, place your replacement in:
 
 ```
-/home/pi/firemergency/firEmergency1.9.9.6-Linux/Config/ersetzungen.txt
+/home/pi/firemergency/firEmergencyA.B.C.D-Linux/Config/ersetzungen.txt
 ```
 
 ## Usage
@@ -178,7 +179,7 @@ $ sh start.sh server-gui
 
 Notice: You have to change to the firEmergency directory before calling the start script:
 ```
-$ cd /home/pi/firemergency/firEmergency1.9.9.6-Linux
+$ cd /home/pi/firemergency/firEmergencyA.B.C.D-Linux
 ```
 
 ### Watchntouch
