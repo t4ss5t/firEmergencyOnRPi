@@ -1,0 +1,9 @@
+{
+  "host": "imap.host.example",
+  "user": "user@domain.example",
+  "password": "supersecretpassword",
+  "out_dir": "/path/to/store/attachments",
+  "valid_sender": "iamavalidsender@domain.example",
+  "valid_content_type": "application/pdf",
+  "valid_type": "attachment"
+}
