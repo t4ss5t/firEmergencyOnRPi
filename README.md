@@ -195,3 +195,26 @@ Loglevel is set to 10, so you can see when watchntouch recognized a file.
 ### Incoming fax observer
 
 Call the observer like it is mentioned above (in section: Run).
+
+## Node.js Script
+
+### Setup
+
+Install modules from packages.json (perhaps as root):
+
+```
+$ npm install
+```
+
+### Configure
+
+Edit mail config file
+1. Copy the template file 'mail_config.js' to '.mail_config.js'
+2. Edit mail config file
+
+### Run
+
+Run in Terminal (with repository as current folder)
+```
+$ npm run observemailbox
+```
