@@ -10,12 +10,6 @@ $ sudo apt-get install imagemagick inotify-tools tightvncserver tesseract-ocr te
 
 Ensure that you have enough space on the device (you should expand the file system before installing the packages).
 
-## Install watchntouch
-
-```
-$ sudo pip install watchntouch
-```
-
 ## Get latest firEmergency edition for linux / set up workspace
 
 Unzip file to destination folder (for example /home/pi/firemergency)
@@ -46,38 +40,6 @@ $ sudo reboot
 
 On a fritz box, the full resulting network name is "firemergency.fritz.box".
 
-## Mount fax folder
-
-### Create folder
-
-```
-$ sudo mkdir /media/fritzbox
-$ sudo chown pi fritzbox/
-```
-
-### Mount
-
-You can mount the Fritz Box's fax folder in the fstab config-file:
-
-```
-$ sudo nano /etc/fstab
-```
-
-Add:
-
-```
-# fritz box fax
-//192.168.XYZ.XYZ/NAME.nas /media/fritzbox cifs credentials=/home/pi/.smbcredentials,uid=1000,gid=1000,user 0 0
-```
-
-You can copy the smbcredentials-template from the repository to the pi-home folder and fiill out the parameters.
-
-If the folder that is defined in fstab was not mounted after startup, you can automount with:
-
-```
-$ sudo mount -a
-```
-
 ### Tightvnc
 
 VNC allows remote maintenance. On first start, you have to assign passwords.
@@ -106,25 +68,25 @@ This is the script that registers incoming fax messages (PDF) and convert it to 
 Run:
 
 ```
-$ sh incomingfaxobserver.sh /media/fritzbox /home/pi/firEmergencyA.B.C.D-Linux/files/fax/input/
+$ sh incomingfaxobserver.sh /home/pi/firemergency/mail_input /home/pi/firEmergencyA.B.C.D-Linux/files/fax/input/
 ```
 
 Test (be sure that you have a "sample.pdf" in the current directory):
 
 ```
-$ cp sample.pdf /media/fritzbox/
+$ cp sample.pdf /home/pi/firemergency/mail_input
 ```
 
 Or:
 
 ```
-$ scp /home/user/file/sample.pdf pi@firemergency.fritz.box:/media/fritzbox/
+$ scp /home/user/file/sample.pdf pi@firemergency.fritz.box:/home/pi/firemergency/mail_input
 ```
 
 Delete previous copied samples before with:
 
 ```
-$ rm /media/fritzbox/sample.pdf
+$ rm /home/pi/firemergency/mail_inputsample.pdf
 ```
 
 Watch the directory "/home/pi/firEmergencyA.B.C.D-Linux/files/fax/input/" for changes.
@@ -159,14 +121,6 @@ You can use the file "ersetzungen.txt" that is given in this repository, place y
 
 ## Usage
 
-### Mount
-
-Automount fritzbox directory (based on fstab configuration):
-
-```
-$ sudo mount -a
-```
-
 ### firEmergency
 
 Start instances with (open new terminal for each instance):
@@ -182,19 +136,20 @@ Notice: You have to change to the firEmergency directory before calling the star
 $ cd /home/pi/firemergency/firEmergencyA.B.C.D-Linux
 ```
 
-### Watchntouch
-
-Run the watchntouch script (in an own terminal) to be sure that the inotify events are called:
-
-```
-$ watchntouch -w /media/fritzbox -l 10
-```
-
-Loglevel is set to 10, so you can see when watchntouch recognized a file.
-
 ### Incoming fax observer
 
 Call the observer like it is mentioned above (in section: Run).
+
+#### Service Setup
+
+```
+$ sudo cp faxobserver /etc/init.d/faxobserver
+$ sudo chmod +x /etc/init.d/faxobserver
+$ sudo update-rc.d faxobserver defaults
+$ sudo /etc/init.d/faxobserver start
+$ sudo /etc/init.d/faxobserver stop
+$ sudo /etc/init.d/faxobserver restart
+```
 
 ## Node.js Script
 
@@ -217,4 +172,14 @@ Edit mail config file
 Run in Terminal (with repository as current folder)
 ```
 $ npm run observemailbox
+```
+### Service Setup
+
+```
+$ sudo cp mailboxobserver /etc/init.d/mailboxobserver
+$ sudo chmod +x /etc/init.d/mailboxobserver
+$ sudo update-rc.d mailboxobserver defaults
+$ sudo /etc/init.d/mailboxobserver start
+$ sudo /etc/init.d/mailboxobserver stop
+$ sudo /etc/init.d/mailboxobserver restart
 ```
