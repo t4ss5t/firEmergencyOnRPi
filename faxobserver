@@ -16,7 +16,7 @@ eval cd ~$USER
 # Check state
 case "$1" in
   start)
-    su $USER -c 'sh incomingfaxobserver.sh /home/pi/firemergency/mail_input /home/pi/firemergency/firEmergency1.9.9.33-Linux/files/fax/input/'
+    su $USER -c 'sh /home/pi/firemergency/firEmergencyOnRPi/incomingfaxobserver.sh /home/pi/firemergency/mail_input /home/pi/firemergency/firEmergency1.9.9.33-Linux/files/fax/input/'
     echo "Starting incomingfaxobserver for $USER"
   ;;
   stop)
