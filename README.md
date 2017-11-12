@@ -5,7 +5,7 @@ Run firEmergency on a Raspberry Pi with fax input by a "Fritz Box" and fax proce
 ## Install packages
 
 ```
-$ sudo apt-get install imagemagick inotify-tools tightvncserver tesseract-ocr tesseract-ocr-deu tesseract-ocr-eng default-jre git htop python-pip
+$ sudo apt-get install imagemagick inotify-tools tightvncserver tesseract-ocr tesseract-ocr-deu tesseract-ocr-eng default-jre git htop python-pip nodejs npm
 ```
 
 Ensure that you have enough space on the device (you should expand the file system before installing the packages).
