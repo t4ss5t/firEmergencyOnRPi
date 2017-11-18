@@ -19,10 +19,10 @@ client.on("connect", function(){
         if(error) throw error;
 
         // only for development purposes
-        /*
+/*
         client.listMessages(-10, function(err, messages) {
             messages.forEach(function(message){
-                if(message.from.address == config.valid_sender && message.bodystructure['2'] !== undefined && message.bodystructure['2'].type === config.valid_content_type && message.bodystructure['2'].disposition[0].type === config.valid_type) {
+                if(message.from.address.toLowerCase() == config.valid_sender.toLowerCase() && message.bodystructure['2'] !== undefined && message.bodystructure['2'].disposition[0].type === config.valid_type) {
                     simpleParser(client.createMessageStream(message.UID), (err, mail)=> {
                         fs.open(config.out_dir + message.UID + "_" + mail.attachments[0].filename, 'w', function(err, fd) {  
                             if (err) {
@@ -39,12 +39,12 @@ client.on("connect", function(){
                 }
             });
         });
-        */
+*/
     });
 
     // on new messages, print to console
     client.on("new", function(message){
-        if(/*message.from.address == config.valid_sender&&*/ message.bodystructure['2'] !== undefined && message.bodystructure['2'].type === config.valid_content_type && message.bodystructure['2'].disposition[0].type === config.valid_type) {
+        if(message.from.address.toLowerCase() == config.valid_sender.toLowerCase() && message.bodystructure['2'] !== undefined && message.bodystructure['2'].disposition[0].type === config.valid_type) {
             simpleParser(client.createMessageStream(message.UID), (err, mail)=> {
                 fs.open(config.out_dir + mail.attachments[0].filename, 'w', function(err, fd) {  
                     if (err) {
