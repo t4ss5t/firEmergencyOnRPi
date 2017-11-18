@@ -1,3 +1,4 @@
 attachments
 node_modules
 .mail_config.json
+*-lock.json
