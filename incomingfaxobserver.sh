@@ -4,7 +4,7 @@ DPI=300 # convert time on Raspberry Pi 2 (@1000 MHz clock, without x-server and 
 OUTPUTFILEENDING=".tif"
 LANGUAGE="deu"
 
-inotifywait -mrq -e attrib --format %w%f $1 | while read FILE
+inotifywait -mrq -e create --format %w%f $1 | while read FILE
 do
 	TIMESTAMP=$( date +%s )
 	OUTPUTFILENAME=$TIMESTAMP$OUTPUTFILEENDING
