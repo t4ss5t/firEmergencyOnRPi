@@ -9,7 +9,7 @@ do
 	TIMESTAMP=$( date +%s )
 	OUTPUTFILENAME=$TIMESTAMP$OUTPUTFILEENDING
 
-  echo "New input-file named $FILE created at $TIMESTAMP"
+    echo "New input-file named $FILE created at $TIMESTAMP"
 
 	echo "convert $FILE to $2$OUTPUTFILENAME ..."
 
