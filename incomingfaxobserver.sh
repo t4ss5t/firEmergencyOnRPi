@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DPI=300 # convert time on Raspberry Pi 2 (@1000 MHz clock, without x-server and VNC connection): DPI=300 ~ 33 seconds, DPI=200 ~ 22 seconds
+DPI=200 # convert time on Raspberry Pi 2 (@1000 MHz clock, without x-server and VNC connection): DPI=300 ~ 33 seconds, DPI=200 ~ 22 seconds
 OUTPUTFILEENDING=".tif"
 LANGUAGE="deu"
 
@@ -9,7 +9,7 @@ do
 	TIMESTAMP=$( date +%s )
 	OUTPUTFILENAME=$TIMESTAMP$OUTPUTFILEENDING
 
-        echo "New input-file named $FILE created at $TIMESTAMP"
+  echo "New input-file named $FILE created at $TIMESTAMP"
 
 	echo "convert $FILE to $2$OUTPUTFILENAME ..."
 

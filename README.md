@@ -40,6 +40,8 @@ $ sudo reboot
 
 On a fritz box, the full resulting network name is "firemergency.fritz.box".
 
+## Configure services
+
 ### Tightvnc
 
 VNC allows remote maintenance. On first start, you have to assign passwords.
@@ -52,13 +54,26 @@ $ xtightvncviewer firemergency.fritz.box:1
 
 Set up init.d services for vncserver (use file from repository):
 
+Install and enable:
+
 ```
-$ sudo nano /etc/init.d/vncserver
-$ sudo chmod +x /etc/init.d/vncserver
-$ sudo update-rc.d vncserver defaults
-$ sudo /etc/init.d/vncserver start
-$ sudo /etc/init.d/vncserver stop
-$ sudo /etc/init.d/vncserver restart
+$ sudo cp vncserver.service /lib/systemd/system/vncserver.service
+$ sudo systemctl enable vncserver.service
+```
+
+Use:
+
+```
+$ sudo systemctl start vncserver.service
+$ sudo systemctl stop vncserver.service
+$ sudo systemctl restart vncserver.service
+$ sudo systemctl status vncserver.service
+```
+
+Disable:
+
+```
+$ sudo systemctl disable vncserver.service
 ```
 
 ### Incoming fax observer
@@ -119,6 +134,55 @@ You can use the file "ersetzungen.txt" that is given in this repository, place y
 /home/pi/firemergency/firEmergencyA.B.C.D-Linux/Config/ersetzungen.txt
 ```
 
+### Setup fireserver service
+
+Install and enable:
+
+```
+$ sudo cp fireserver.service /lib/systemd/system/fireserver.service
+$ sudo systemctl enable fireserver.service
+```
+
+Use:
+
+```
+$ sudo systemctl start fireserver.service
+$ sudo systemctl stop fireserver.service
+$ sudo systemctl restart fireserver.service
+$ sudo systemctl status fireserver.service
+```
+
+Disable:
+
+```
+$ sudo systemctl disable fireserver.service
+```
+
+### Setup fireclient service
+
+
+Install and enable:
+
+```
+$ sudo cp fireclient.service /lib/systemd/system/fireclient.service
+$ sudo systemctl enable fireclient.service
+```
+
+Use:
+
+```
+$ sudo systemctl start fireclient.service
+$ sudo systemctl stop fireclient.service
+$ sudo systemctl restart fireclient.service
+$ sudo systemctl status fireclient.service
+```
+
+Disable:
+
+```
+$ sudo systemctl disable fireclient.service
+```
+
 ## Usage
 
 ### firEmergency
@@ -140,15 +204,28 @@ $ cd /home/pi/firemergency/firEmergencyA.B.C.D-Linux
 
 Call the observer like it is mentioned above (in section: Run).
 
-#### Service Setup
+#### Setup faxobserver service
+
+Install and enable:
 
 ```
-$ sudo cp faxobserver /etc/init.d/faxobserver
-$ sudo chmod +x /etc/init.d/faxobserver
-$ sudo update-rc.d faxobserver defaults
-$ sudo /etc/init.d/faxobserver start
-$ sudo /etc/init.d/faxobserver stop
-$ sudo /etc/init.d/faxobserver restart
+$ sudo cp faxobserver.service /lib/systemd/system/faxobserver.service
+$ sudo systemctl enable faxobserver.service
+```
+
+Use:
+
+```
+$ sudo systemctl start faxobserver.service
+$ sudo systemctl stop faxobserver.service
+$ sudo systemctl restart faxobserver.service
+$ sudo systemctl status faxobserver.service
+```
+
+Disable:
+
+```
+$ sudo systemctl disable faxobserver.service
 ```
 
 ## Node.js Script
@@ -173,13 +250,43 @@ Run in Terminal (with repository as current folder)
 ```
 $ npm run observemailbox
 ```
-### Service Setup
+
+### Setup mailboxobserver service
+
+Install and enable:
 
 ```
-$ sudo cp mailboxobserver /etc/init.d/mailboxobserver
-$ sudo chmod +x /etc/init.d/mailboxobserver
-$ sudo update-rc.d mailboxobserver defaults
-$ sudo /etc/init.d/mailboxobserver start
-$ sudo /etc/init.d/mailboxobserver stop
-$ sudo /etc/init.d/mailboxobserver restart
+$ sudo cp mailboxobserver.service /lib/systemd/system/mailboxobserver.service
+$ sudo systemctl enable mailboxobserver.service
+```
+
+Use:
+
+```
+$ sudo systemctl start mailboxobserver.service
+$ sudo systemctl stop mailboxobserver.service
+$ sudo systemctl restart mailboxobserver.service
+$ sudo systemctl status mailboxobserver.service
+```
+
+Disable:
+
+```
+$ sudo systemctl disable mailboxobserver.service
+```
+
+## Cronjobs
+
+Edit root's crontab to be sure services are started as root:
+
+```
+sudo crontab -e
+```
+
+Restart the observer services every hour:
+
+```
+*/15 * * * *  systemctl restart mailboxobserver.service > /dev/null 2>&1
+*/15 * * * *  systemctl restart faxobserver.service > /dev/null 2>&1
+#-----------------------------------------------------------------
 ```

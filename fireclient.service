@@ -1,0 +1,14 @@
+[Unit]
+Description=Firemergency client
+After=fireserver.service
+
+[Service]
+ExecStart=/bin/sh start.sh client
+WorkingDirectory=/home/pi/firemergency/firEmergency1.9.9.33-Linux
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User=pi
+
+[Install]
+WantedBy=multi-user.target

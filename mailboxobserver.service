@@ -1,0 +1,13 @@
+[Unit]
+Description=Mailbox observer
+
+[Service]
+ExecStart=/usr/bin/node /home/pi/firemergency/firEmergencyOnRPi/mailboxobserver.js
+WorkingDirectory=/home/pi
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User=pi
+
+[Install]
+WantedBy=multi-user.target

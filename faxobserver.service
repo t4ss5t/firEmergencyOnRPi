@@ -1,0 +1,13 @@
+[Unit]
+Description=Fax observer
+
+[Service]
+ExecStart=/bin/sh /home/pi/firemergency/firEmergencyOnRPi/incomingfaxobserver.sh /home/pi/firemergency/mail_input /home/pi/firemergency/firEmergency1.9.9.33-Linux/files/fax/input/
+WorkingDirectory=/home/pi
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User=pi
+
+[Install]
+WantedBy=multi-user.target
